@@ -15,6 +15,7 @@
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Welcome to Spireblight’s documentation!" href="index.html" />
@@ -43,6 +44,77 @@
 <dt class="sig sig-object py" id="gamedata.FileParser.timestamp">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#gamedata.FileParser.timestamp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gives the UNIX timestamp of the run’s end (or last save)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.display_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">display_name</span></span><a class="headerlink" href="#gamedata.FileParser.display_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A human-readable name of the run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.character">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">character</span></span><a class="headerlink" href="#gamedata.FileParser.character" title="Permalink to this definition">¶</a></dt>
+<dd><p>The character being played in this run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.modded">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">modded</span></span><a class="headerlink" href="#gamedata.FileParser.modded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the character is modded</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.current_hp_counts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_hp_counts</span></span><a class="headerlink" href="#gamedata.FileParser.current_hp_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current HP in all the floors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.max_hp_counts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_hp_counts</span></span><a class="headerlink" href="#gamedata.FileParser.max_hp_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>The max HP in all the floors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.gold_counts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gold_counts</span></span><a class="headerlink" href="#gamedata.FileParser.gold_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>The gold in all the floors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
