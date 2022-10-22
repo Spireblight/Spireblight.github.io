@@ -40,10 +40,22 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="gamedata.FileParser">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gamedata.</span></span><span class="sig-name descname"><span class="pre">FileParser</span></span><a class="headerlink" href="#gamedata.FileParser" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py property">
+<dd><p>The base parsing class for both past runs and ongoing ones.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gamedata.FileParser.neow_bonus">
+<span class="sig-name descname"><span class="pre">neow_bonus</span></span><a class="headerlink" href="#gamedata.FileParser.neow_bonus" title="Permalink to this definition">¶</a></dt>
+<dd><p>All of the relevant data for the Neow bonus and floor 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">NeowBonus</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="gamedata.FileParser.timestamp">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#gamedata.FileParser.timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gives the UNIX timestamp of the run’s end (or last save)</p>
+<dd><p>Give the UNIX timestamp of the run’s end (or last save).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
@@ -54,7 +66,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="gamedata.FileParser.display_name">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">display_name</span></span><a class="headerlink" href="#gamedata.FileParser.display_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>A human-readable name of the run</p>
+<dd><p>A human-readable name of the run.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -65,7 +77,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="gamedata.FileParser.character">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">character</span></span><a class="headerlink" href="#gamedata.FileParser.character" title="Permalink to this definition">¶</a></dt>
-<dd><p>The character being played in this run</p>
+<dd><p>The character being played in this run.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -76,7 +88,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="gamedata.FileParser.modded">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">modded</span></span><a class="headerlink" href="#gamedata.FileParser.modded" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether the character is modded</p>
+<dd><p>Whether the character is modded.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
@@ -87,7 +99,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="gamedata.FileParser.current_hp_counts">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_hp_counts</span></span><a class="headerlink" href="#gamedata.FileParser.current_hp_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>The current HP in all the floors</p>
+<dd><p>The current HP in all the floors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list[int]</p>
@@ -98,7 +110,7 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="gamedata.FileParser.max_hp_counts">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_hp_counts</span></span><a class="headerlink" href="#gamedata.FileParser.max_hp_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>The max HP in all the floors</p>
+<dd><p>The max HP in all the floors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list[int]</p>
@@ -109,10 +121,304 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="gamedata.FileParser.gold_counts">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gold_counts</span></span><a class="headerlink" href="#gamedata.FileParser.gold_counts" title="Permalink to this definition">¶</a></dt>
-<dd><p>The gold in all the floors</p>
+<dd><p>The gold in all the floors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.ascension_level">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ascension_level</span></span><a class="headerlink" href="#gamedata.FileParser.ascension_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ascension level of the run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.playtime">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">playtime</span></span><a class="headerlink" href="#gamedata.FileParser.playtime" title="Permalink to this definition">¶</a></dt>
+<dd><p>The playtime as stored in the savefile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><a class="headerlink" href="#gamedata.FileParser.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>The keys (if obtained) and the floor they were obtained on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generator[tuple[str, str | int], None, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.FileParser._get_cards">
+<span class="sig-name descname"><span class="pre">_get_cards</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.FileParser._get_cards" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to get the card name and metadata for <a class="reference internal" href="#gamedata.FileParser.master_deck_as_html" title="gamedata.FileParser.master_deck_as_html"><code class="xref py py-meth docutils literal notranslate"><span class="pre">master_deck_as_html()</span></code></a> and <a class="reference internal" href="#gamedata.FileParser.cards" title="gamedata.FileParser.cards"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cards</span></code></a>. Should not be used by external code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generator[tuple[str, dict[str, str]], None, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.removals">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">removals</span></span><a class="headerlink" href="#gamedata.FileParser.removals" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all the cards that were removed this run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Abstractmethod<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.FileParser._get_removals">
+<span class="sig-name descname"><span class="pre">_get_removals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.FileParser._get_removals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to get the card name and metadata for <a class="reference internal" href="#gamedata.FileParser.removals_as_html" title="gamedata.FileParser.removals_as_html"><code class="xref py py-meth docutils literal notranslate"><span class="pre">removals_as_html()</span></code></a> and <a class="reference internal" href="#gamedata.FileParser.removals" title="gamedata.FileParser.removals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">removals</span></code></a>. Should not be used by external code.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.FileParser.master_deck_as_html">
+<span class="sig-name descname"><span class="pre">master_deck_as_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.FileParser.master_deck_as_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>All of the current deck, properly formatted, with the small cards next to them, in three columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generator[str, None, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.FileParser.removals_as_html">
+<span class="sig-name descname"><span class="pre">removals_as_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.FileParser.removals_as_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>All of the removed cards, properly formatted, with the small cards next to them, in three columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generator[str, None, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.FileParser._cards_as_html">
+<span class="sig-name descname"><span class="pre">_cards_as_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cards</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.FileParser._cards_as_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to properly format an iterable of cards, called by <a class="reference internal" href="#gamedata.FileParser.master_deck_as_html" title="gamedata.FileParser.master_deck_as_html"><code class="xref py py-meth docutils literal notranslate"><span class="pre">master_deck_as_html()</span></code></a> and <a class="reference internal" href="#gamedata.FileParser.removals_as_html" title="gamedata.FileParser.removals_as_html"><code class="xref py py-meth docutils literal notranslate"><span class="pre">removals_as_html()</span></code></a>. Should not be used by external code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cards</strong> (<em>Iterable</em><em>[</em><em>tuple</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em><em>]</em>) – An iterable of cards to format</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Generator[str, None, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.cards">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cards</span></span><a class="headerlink" href="#gamedata.FileParser.cards" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all of the cards currently part of the deck.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generator[str, None, None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.relics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">relics</span></span><a class="headerlink" href="#gamedata.FileParser.relics" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all of the relics the run currently has.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#gamedata.RelicData" title="gamedata.RelicData"><code class="xref py py-class docutils literal notranslate"><span class="pre">RelicData</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.seed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">seed</span></span><a class="headerlink" href="#gamedata.FileParser.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>The run’s seed. This calculates it from the integer saved in the JSON file, then caches it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The seed like Spire displays it</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.is_seeded">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_seeded</span></span><a class="headerlink" href="#gamedata.FileParser.is_seeded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the run is seeded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#gamedata.FileParser.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the path that the run took, with proper info accompanying it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<code class="xref py py-class docutils literal notranslate"><span class="pre">NodeData</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.modifiers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">modifiers</span></span><a class="headerlink" href="#gamedata.FileParser.modifiers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show all modifiers the run has.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.modifiers_with_desc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">modifiers_with_desc</span></span><a class="headerlink" href="#gamedata.FileParser.modifiers_with_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a human-friendly output of the modifiers with a short description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.score">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">score</span></span><a class="headerlink" href="#gamedata.FileParser.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the run’s score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Abstractmethod<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.FileParser.score_breakdown">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">score_breakdown</span></span><a class="headerlink" href="#gamedata.FileParser.score_breakdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the score breakdown of the run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Abstractmethod<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.FileParser.get_floor">
+<span class="sig-name descname"><span class="pre">get_floor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">floor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.FileParser.get_floor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the node corresponding to a given floor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>floor</strong> (<em>int</em>) – The floor to get the data for</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeData</span></code> or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gamedata.RelicData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gamedata.</span></span><span class="sig-name descname"><span class="pre">RelicData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relic</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.RelicData" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class storing relic information and stats for displaying.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parser</strong> (<a class="reference internal" href="#gamedata.FileParser" title="gamedata.FileParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileParser</span></code></a>) – The parser being used to get the data from this.</p></li>
+<li><p><strong>relic</strong> (<em>str</em>) – The internal name of the relic.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.RelicData.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.RelicData.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>The floor the relic was obtained, as well as stats, using <a class="reference internal" href="#gamedata.RelicData.get_details" title="gamedata.RelicData.get_details"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_details()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.RelicData.escaped_description">
+<span class="sig-name descname"><span class="pre">escaped_description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.RelicData.escaped_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as <a class="reference internal" href="#gamedata.RelicData.description" title="gamedata.RelicData.description"><code class="xref py py-meth docutils literal notranslate"><span class="pre">description()</span></code></a>, but properly escaped for HTML presentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.RelicData.get_details">
+<span class="sig-name descname"><span class="pre">get_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obtained</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.RelicData.get_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the stats for the relic, if applicable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obtained</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">NodeData</span></code>) – The node this relic was obtained</p></li>
+<li><p><strong>last</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">NodeData</span></code>) – The last node with this relic (aka current node)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.RelicData.image">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#gamedata.RelicData.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>The image name for the relic, as present in the static/relics directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.RelicData.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#gamedata.RelicData.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The in-game name of the relic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -142,6 +448,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Parsing run history and savegame data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#gamedata.FileParser"><code class="docutils literal notranslate"><span class="pre">FileParser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gamedata.RelicData"><code class="docutils literal notranslate"><span class="pre">RelicData</span></code></a></li>
 </ul>
 </li>
 </ul>
