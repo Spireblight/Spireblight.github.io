@@ -32,103 +32,133 @@ Parsing run history and savegame data
 
         Give the UNIX timestamp of the run's end (or last save). This is implemented by the subclasses.
 
-        :rtype: datetime.datetime
+        :type: datetime.datetime
 
     .. property:: timedelta
 
         How much time has passed since the run has been played. This is implemented by the subclasses.
 
-        :rtype: datetime.timedelta
+        :type: datetime.timedelta
 
     .. property:: profile
 
         The profile that the run was played on. This is implemented by the subclasses.
 
-        :rtype: :class:`Profile`
+        :type: :class:`Profile`
 
     .. property:: character_streak
 
         The position of this run in the character streak. This is implemented by the subclasses.
 
-        :rtype: :class:`runs.StreakInfo`
+        :type: :class:`runs.StreakInfo`
 
     .. property:: rotating_streak
 
         The position of this run in the rotating streak. This is implemented by the subclasses.
 
-        :rtype: :class:`runs.StreakInfo`
+        :type: :class:`runs.StreakInfo`
 
     .. property:: display_name
 
         A human-readable name of the run. This is implemented by the subclasses.
 
-        :rtype: str
+        :type: str
 
     .. property:: character
 
         The character being played in this run.
 
-        :rtype: str
+        :type: str
 
     .. property:: modded
 
         Whether the character is modded.
 
-        :rtype: bool
+        :type: bool
 
     .. property:: current_hp_counts
 
         The current HP in all the floors.
 
-        :rtype: list[int]
+        :type: list[int]
 
     .. property:: max_hp_counts
 
         The max HP in all the floors.
 
-        :rtype: list[int]
+        :type: list[int]
 
     .. property:: gold_counts
 
         The gold in all the floors.
 
-        :rtype: list[int]
+        :type: list[int]
 
     .. property:: ascension_level
 
         The ascension level of the run.
 
-        :rtype: int
+        :type: int
 
     .. property:: playtime
 
         The playtime as stored in the savefile.
 
-        :rtype: int
+        :type: int
 
     .. property:: keys
 
-        The keys (if obtained) and the floor they were obtained on.
+        The keys (if obtained) and the floor they were obtained on. This is implemented by the subclasses.
 
-        :rtype: Generator[tuple[str, str | int], None, None]
+        :type: :class:`KeysObtained`
 
-    .. method:: _get_cards()
+    .. property:: _master_deck
 
-        Internal method to get the card name and metadata for :meth:`master_deck_as_html` and :attr:`cards`. Should not be used by external code.
+        The main deck, with the internal names. This is implemented by the subclasses.
 
-        :rtype: Generator[tuple[str, dict[str, str]], None, None]
+        :type: list[str]
 
-    .. property:: removals
+    .. method:: get_cards()
+
+        Generator to get the cards in the main deck.
+
+        :rtype: Generator[:class:`CardData`, None, None]
+
+    .. method:: get_meta_scaling_cards()
+
+        The meta-scaling cards and the relevant metadata.
+
+        :rtype: list[tuple[str, int]]
+
+    .. property:: cards
+
+        A list of all the cards in the deck. Duplicate cards appear multiple times.
+
+        :type: Generator[str, None, None]
+
+    .. property:: _removals
 
         A list of all the cards that were removed this run. This is implemented by the subclasses.
 
-        :rtype: list[str]
+        :type: list[str]
 
-    .. method:: _get_removals()
+    .. method:: get_removals()
 
-        Internal method to get the card name and metadata for :meth:`removals_as_html` and :attr:`removals`. Should not be used by external code.
+        Generator to get the cards that were removed during the run.
 
-        :rtype: Generator[tuple[str, dict[str, str]], None, None]
+        :type: Generator[:class:`CardData`, None, None]
+
+    .. property:: has_removals
+
+        Whether the run has had any cards removed (yet).
+
+        :type: bool
+
+    .. property:: removals
+
+        A list of all the cards removed during the run. Duplicate cards appear multiple times.
+
+        :type: Generator[str, None, None]
 
     .. method:: master_deck_as_html()
 
@@ -150,60 +180,54 @@ Parsing run history and savegame data
         :type cards: Iterable[tuple[str, dict[str, str]]]
         :rtype: Generator[str, None, None]
 
-    .. property:: cards
-
-        Get all of the cards currently part of the deck.
-
-        :rtype: Generator[str, None, None]
-
     .. property:: relics
 
         List all of the relics the run currently has.
 
-        :rtype: list[:class:`RelicData`]
+        :type: list[:class:`RelicData`]
 
     .. property:: seed
 
         The run's seed. This calculates it from the integer saved in the JSON file, then caches it.
 
         :return: The seed like Spire displays it
-        :rtype: str
+        :type: str
 
     .. property:: is_seeded
 
         Whether the run is seeded.
 
-        :rtype: bool
+        :type: bool
 
     .. property:: path
 
         List the path that the run took, with proper info accompanying it.
 
-        :rtype: list[:class:`NodeData`]
+        :type: list[:class:`NodeData`]
 
     .. property:: modifiers
 
         Show all modifiers the run has.
 
-        :rtype: list[str]
+        :type: list[str]
 
     .. property:: modifiers_with_desc
 
         Return a human-friendly output of the modifiers with a short description.
 
-        :rtype: list[str]
+        :type: list[str]
 
     .. property:: score
 
         Get the run's score. This is implemented by the subclasses.
 
-        :rtype: int
+        :type: int
 
     .. property:: score_breakdown
 
         Get the score breakdown of the run. This is implemented by the subclasses.
 
-        :rtype: list[str]
+        :type: list[str]
 
     .. method:: get_floor(floor)
 
@@ -242,37 +266,37 @@ Parsing run history and savegame data
 
         Whether the run won.
 
-        :rtype: bool
+        :type: bool
 
     .. property:: verb
 
         Which verb to use for the run.
 
-        :rtype: str
+        :type: str
 
     .. property:: killed_by
 
         Which enemy encounter killed us, if relevant.
 
-        :rtype: str or None
+        :type: str or None
 
     .. property:: floor_reached
 
         The highest floor the run reached.
 
-        :rtype: int
+        :type: int
 
     .. property:: final_health
 
         The final health value of the run, in a (current, max) tuple.
 
-        :rtype: tuple[int, int]
+        :type: tuple[int, int]
 
     .. property:: run_length
 
         How long the run lasted, in a human-readable format.
 
-        :rtype: str
+        :type: str
 
     .. method:: _get_streak(*, is_character_streak)
 
@@ -306,61 +330,61 @@ Parsing run history and savegame data
 
         Whether there is currently a run going on.
 
-        :rtype: bool
+        :type: bool
 
     .. property:: current_health
 
         The run's current health.
 
-        :rtype: int
+        :type: int
 
     .. property:: max_health
 
         The run's max health.
 
-        :rtype: int
+        :type: int
 
     .. property:: current_gold
 
         The run's current gold count.
 
-        :rtype: int
+        :type: int
 
     .. property:: current_purge
 
         The current cost of the merchant's card removal service.
 
-        :rtype: int
+        :type: int
 
     .. property:: purge_totals
 
         How many cards were removed using the merchant's card removal service.
 
-        :rtype: int
+        :type: int
 
     .. property:: shop_prices
 
         The current shop prices. This is a tuple of 4 tuples; (cards, colorless, relics, potions). Each tuple is a tuple of range objects for the prices of the (common, uncommon, rare) rarity for each. The colorless tuple is only (uncommon, rare). The items can cost as low as `obj.start` and as high as `obj.stop`, slightly breaking Pythonic assumptions. This is fine.
 
-        :rtype: tuple[tuple[range, range, range], tuple[range, range], tuple[range, range, range], tuple[range, range, range]]
+        :type: tuple[tuple[range, range, range], tuple[range, range], tuple[range, range, range], tuple[range, range, range]]
 
     .. property:: current_floor
 
         The current floor of the run.
 
-        :rtype: int
+        :type: int
 
     .. property:: potion_chance
 
         The current chance for a potion to drop after a fight. This is a percentage.
 
-        :rtype: int
+        :type: int
 
     .. property:: rare_chance
 
         The current chance to see any rare card after. This is a tuple of (fight rewards, elite rewards, shop contents), indicating the odds for that particular point to have a rare card. This is a chance to see *any* rare card, not just one. This is a percentage.
 
-        :rtype: tuple[float, float, float]
+        :type: tuple[float, float, float]
 
     .. method:: rare_chance_as_str()
 
@@ -372,23 +396,13 @@ Parsing run history and savegame data
 
         Which is the upcoming act boss. This only returns the first Act 3 boss, if relevant.
 
-        :rtype: str
+        :type: str
 
     .. property:: bottles
 
         The bottle relics and their bottled cards.
 
-        :rtype: list[:class:`BottleRelic`]
-
-    .. method:: _get_card_string(card, upgrades)
-
-        Get the canonical name of the card. Used by :attr:`bottles`.
-
-        :staticmethod:
-        :param str card: The internal name of the card.
-        :param int upgrades: The number of upgrades on the card.
-        :return: The canonical name of the card.
-        :rtype: str
+        :type: list[:class:`BottleRelic`]
 
     .. method:: _get_score_bonuses()
 
@@ -400,31 +414,31 @@ Parsing run history and savegame data
 
         How many regular enemies were killed.
 
-        :rtype: int
+        :type: int
 
     .. property:: act1_elites_killed
 
         How many Exordium elites were killed.
 
-        :rtype: int
+        :type: int
 
     .. property:: act2_elites_killed
 
         How many City elites were killed.
 
-        :rtype: int
+        :type: int
 
     .. property:: act3_elites_killed
 
         How many Beyond elites were killed.
 
-        :rtype: int
+        :type: int
 
     .. property:: perfect_elites
 
         How many elites were killed without taking damage.
 
-        :rtype: int
+        :type: int
 
     .. property:: perfect_bosses
 
@@ -436,37 +450,37 @@ Parsing run history and savegame data
 
         Whether we did 99 or more damage with a single attack.
 
-        :rtype: bool
+        :type: bool
 
     .. property:: mystery_machine_counter
 
         How many unknown rooms were visited.
 
-        :rtype: int
+        :type: int
 
     .. property:: total_gold_gained
 
         How much gold has been acquired in the entire run.
 
-        :rtype: int
+        :type: int
 
     .. property:: has_combo
 
         Whether we played 20 or more cards in a single turn.
 
-        :rtype: bool
+        :type: bool
 
     .. property:: act_num
 
         The act we are currently in.
 
-        :rtype: int
+        :type: int
 
     .. property:: deck_card_ids
 
         The internal card names, for score breakdown purposes.
 
-        :rtype: list[str]
+        :type: list[str]
 
 .. function:: save.get_savefile([context=None])
     :async:
@@ -477,6 +491,50 @@ Parsing run history and savegame data
     :type context: A TwitchIO or DiscordPY message context, or None
     :return: The current savefile or None
     :rtype: :class:`save.Savefile` or None
+
+.. class:: KeysObtained
+
+    .. attribute:: ruby_key_obtained
+
+        Whether the Ruby key has been obtained.
+
+        :type: bool
+
+    .. attribute:: ruby_key_floor
+
+        Which floor the Ruby key was obtained on, if available.
+
+        :type: int
+
+    .. attribute:: emerald_key_obtained
+
+        Whether the Emerald key has been obtained.
+
+        :type: bool
+
+    .. attribute:: emerald_key_floor
+
+        Which floor the Emerald key was obtained on, if available.
+
+        :type: int
+
+    .. attribute:: sapphire_key_obtained
+
+        Whether the Sapphire key has been obtained.
+
+        :type: bool
+
+    .. attribute:: sapphire_key_floor
+
+        Which floor the Sapphire key was obtained on, if available.
+
+        :type: int
+
+    .. method:: as_list()
+
+        A list of all three keys and their values, in order Emerald, Ruby, Sapphire.
+
+        :rtype: list[tuple[str, bool, int]]
 
 .. class:: RelicData(parser, relic)
 
@@ -512,10 +570,97 @@ Parsing run history and savegame data
 
         The image name for the relic, as present in the static/relics directory.
 
-        :rtype: str
+        :type: str
 
     .. property:: name
 
         The in-game name of the relic.
 
-        :rtype: str
+        :type: str
+
+.. class:: CardData(card, cards_list, meta)
+
+    The class storing card information for a run.
+
+    :param str card: The internal name of the card.
+    :param cards_list: The list this card belongs to.
+    :type cards_list: list[str]
+    :param int meta: Meta-scaling information for the card.
+
+    .. attribute:: internal
+
+        The internal name of the card.
+
+        :type: str
+
+    .. attribute:: card
+
+        The dataclass for the card's static information.
+
+        :type: :class:`nameinternal.Card`
+
+    .. attribute:: meta
+
+        The meta-scaling information for the card.
+
+        :type: int
+
+    .. attribute:: upgrades
+
+        The upgrade count for the card, 0 if unavailable.
+
+        :type: int
+
+    .. method:: as_cards()
+
+        An iterable of the card's display name, repeated so all cards happen multiple times.
+
+        :type: Generator[str, None, None]
+
+    .. property:: color
+
+        The card's color. Modded characters may not return an actual color.
+
+        :type: str
+
+    .. property:: type
+
+        The card's type.
+
+        :type: str
+
+    .. property:: type_safe
+
+        The card's type, safe for page display. This will be either "Attack", "Skill", or "Power".
+
+        :type: str
+
+    .. property:: rarity
+
+        The card's rarity.
+
+        :type: str
+
+    .. property:: rarity_safe
+
+        The card's rarity, safe for page display. This will be either "Common", "Uncommon", or "Rare".
+
+        :type: str
+
+    .. property:: count
+
+        How many times the card appears in the provided list.
+
+        :type: int
+
+    .. property:: name
+
+        The name of the card, as it appears in the game.
+
+        :type: str
+
+    .. property:: display_name
+
+        The card as it would show in the deck display. This includes the card's count if it is greater than 1.
+
+        :type: str
