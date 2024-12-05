@@ -11,6 +11,7 @@ Welcome to Spireblight's documentation!
    :caption: Contents:
 
    fileparser
+   utils
 
 Indices and tables
 ==================

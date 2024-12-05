@@ -3,6 +3,179 @@ Parsing run history and savegame data
 
 .. module:: gamedata
 
+.. class:: KeysObtained
+
+    .. attribute:: ruby_key_obtained
+
+        Whether the Ruby key has been obtained.
+
+        :type: bool
+
+    .. attribute:: ruby_key_floor
+
+        Which floor the Ruby key was obtained on, if available.
+
+        :type: int
+
+    .. attribute:: emerald_key_obtained
+
+        Whether the Emerald key has been obtained.
+
+        :type: bool
+
+    .. attribute:: emerald_key_floor
+
+        Which floor the Emerald key was obtained on, if available.
+
+        :type: int
+
+    .. attribute:: sapphire_key_obtained
+
+        Whether the Sapphire key has been obtained.
+
+        :type: bool
+
+    .. attribute:: sapphire_key_floor
+
+        Which floor the Sapphire key was obtained on, if available.
+
+        :type: int
+
+    .. method:: as_list()
+
+        A list of all three keys and their values, in order Emerald, Ruby, Sapphire.
+
+        :rtype: list[tuple[str, bool, int]]
+
+.. class:: RelicData(parser, relic)
+
+    The class storing relic information and stats for displaying.
+
+    :param parser: The parser being used to get the data from this.
+    :type parser: :class:`FileParser`
+    :param str relic: The internal name of the relic.
+
+    .. method:: description()
+
+        The floor the relic was obtained, as well as stats, using :meth:`get_details`.
+
+        :rtype: str
+
+    .. method:: escaped_description()
+
+        Same as :meth:`description`, but properly escaped for HTML presentation.
+
+        :rtype: str
+
+    .. method:: get_details(obtained, last)
+
+        Get the stats for the relic, if applicable.
+
+        :param obtained: The node this relic was obtained.
+        :type obtained: :class:`NodeData`
+        :param last: The last node with this relic (aka current node).
+        :type last: :class:`NodeData`
+        :rtype: list[str]
+
+    .. property:: image
+
+        The image name for the relic, as present in the static/relics directory.
+
+        :type: str
+
+    .. property:: name
+
+        The in-game name of the relic.
+
+        :type: str
+
+.. class:: CardData(card, cards_list, meta)
+
+    The class storing card information for a run.
+
+    :param str card: The internal name of the card.
+    :param cards_list: The list this card belongs to.
+    :type cards_list: list[str]
+    :param int meta: Meta-scaling information for the card.
+
+    .. attribute:: internal
+
+        The internal name of the card.
+
+        :type: str
+
+    .. attribute:: card
+
+        The dataclass for the card's static information.
+
+        :type: :class:`nameinternal.Card`
+
+    .. attribute:: meta
+
+        The meta-scaling information for the card.
+
+        :type: int
+
+    .. attribute:: upgrades
+
+        The upgrade count for the card, 0 if unavailable.
+
+        :type: int
+
+    .. method:: as_cards()
+
+        An iterable of the card's display name, repeated so all cards happen multiple times.
+
+        :type: Generator[str, None, None]
+
+    .. property:: color
+
+        The card's color. Modded characters may not return an actual color.
+
+        :type: str
+
+    .. property:: type
+
+        The card's type.
+
+        :type: str
+
+    .. property:: type_safe
+
+        The card's type, safe for page display. This will be either "Attack", "Skill", or "Power".
+
+        :type: str
+
+    .. property:: rarity
+
+        The card's rarity.
+
+        :type: str
+
+    .. property:: rarity_safe
+
+        The card's rarity, safe for page display. This will be either "Common", "Uncommon", or "Rare".
+
+        :type: str
+
+    .. property:: count
+
+        How many times the card appears in the provided list.
+
+        :type: int
+
+    .. property:: name
+
+        The name of the card, as it appears in the game.
+
+        :type: str
+
+    .. property:: display_name
+
+        The card as it would show in the deck display. This includes the card's count if it is greater than 1.
+
+        :type: str
+
 .. class:: FileParser(data)
 
     The base parsing class for both past runs and ongoing ones.
@@ -236,7 +409,9 @@ Parsing run history and savegame data
         :param int floor: The floor to get the data for
         :rtype: :class:`NodeData` or None
 
-.. class:: runs.RunParser(filename, profile, data)
+.. module:: runs
+
+.. class:: RunParser(filename, profile, data)
 
     The data for finalized runs. This is a :class:`FileParser` subclass.
 
@@ -305,7 +480,7 @@ Parsing run history and savegame data
         :param bool is_character_streak: Whether to calculate the character or rotating streak.
         :rtype: :class:`runs.StreakInfo`
 
-.. class:: runs.StreakInfo(streak, position, is_ongoing)
+.. class:: StreakInfo(streak, position, is_ongoing)
 
     The streak information for runs. This is a named tuple.
 
@@ -313,7 +488,9 @@ Parsing run history and savegame data
     :param int position: The position of the run in the streak.
     :param bool is_ongoing: Whether the streak is still going.
 
-.. class:: save.Savefile
+.. module:: save
+
+.. class:: Savefile
 
     The run information for the ongoing run. There can only ever be one instance of this during the lifetime of the process. The active instance can be obtained with :func:`save.get_savefile`. This is a :class:`FileParser` subclass.
 
@@ -482,7 +659,7 @@ Parsing run history and savegame data
 
         :type: list[str]
 
-.. function:: save.get_savefile([context=None])
+.. function:: get_savefile([context=None])
     :async:
 
     Get the current savefile, or None if no run is ongoing.
@@ -491,176 +668,3 @@ Parsing run history and savegame data
     :type context: A TwitchIO or DiscordPY message context, or None
     :return: The current savefile or None
     :rtype: :class:`save.Savefile` or None
-
-.. class:: KeysObtained
-
-    .. attribute:: ruby_key_obtained
-
-        Whether the Ruby key has been obtained.
-
-        :type: bool
-
-    .. attribute:: ruby_key_floor
-
-        Which floor the Ruby key was obtained on, if available.
-
-        :type: int
-
-    .. attribute:: emerald_key_obtained
-
-        Whether the Emerald key has been obtained.
-
-        :type: bool
-
-    .. attribute:: emerald_key_floor
-
-        Which floor the Emerald key was obtained on, if available.
-
-        :type: int
-
-    .. attribute:: sapphire_key_obtained
-
-        Whether the Sapphire key has been obtained.
-
-        :type: bool
-
-    .. attribute:: sapphire_key_floor
-
-        Which floor the Sapphire key was obtained on, if available.
-
-        :type: int
-
-    .. method:: as_list()
-
-        A list of all three keys and their values, in order Emerald, Ruby, Sapphire.
-
-        :rtype: list[tuple[str, bool, int]]
-
-.. class:: RelicData(parser, relic)
-
-    The class storing relic information and stats for displaying.
-
-    :param parser: The parser being used to get the data from this.
-    :type parser: :class:`FileParser`
-    :param str relic: The internal name of the relic.
-
-    .. method:: description()
-
-        The floor the relic was obtained, as well as stats, using :meth:`get_details`.
-
-        :rtype: str
-
-    .. method:: escaped_description()
-
-        Same as :meth:`description`, but properly escaped for HTML presentation.
-
-        :rtype: str
-
-    .. method:: get_details(obtained, last)
-
-        Get the stats for the relic, if applicable.
-
-        :param obtained: The node this relic was obtained.
-        :type obtained: :class:`NodeData`
-        :param last: The last node with this relic (aka current node).
-        :type last: :class:`NodeData`
-        :rtype: list[str]
-
-    .. property:: image
-
-        The image name for the relic, as present in the static/relics directory.
-
-        :type: str
-
-    .. property:: name
-
-        The in-game name of the relic.
-
-        :type: str
-
-.. class:: CardData(card, cards_list, meta)
-
-    The class storing card information for a run.
-
-    :param str card: The internal name of the card.
-    :param cards_list: The list this card belongs to.
-    :type cards_list: list[str]
-    :param int meta: Meta-scaling information for the card.
-
-    .. attribute:: internal
-
-        The internal name of the card.
-
-        :type: str
-
-    .. attribute:: card
-
-        The dataclass for the card's static information.
-
-        :type: :class:`nameinternal.Card`
-
-    .. attribute:: meta
-
-        The meta-scaling information for the card.
-
-        :type: int
-
-    .. attribute:: upgrades
-
-        The upgrade count for the card, 0 if unavailable.
-
-        :type: int
-
-    .. method:: as_cards()
-
-        An iterable of the card's display name, repeated so all cards happen multiple times.
-
-        :type: Generator[str, None, None]
-
-    .. property:: color
-
-        The card's color. Modded characters may not return an actual color.
-
-        :type: str
-
-    .. property:: type
-
-        The card's type.
-
-        :type: str
-
-    .. property:: type_safe
-
-        The card's type, safe for page display. This will be either "Attack", "Skill", or "Power".
-
-        :type: str
-
-    .. property:: rarity
-
-        The card's rarity.
-
-        :type: str
-
-    .. property:: rarity_safe
-
-        The card's rarity, safe for page display. This will be either "Common", "Uncommon", or "Rare".
-
-        :type: str
-
-    .. property:: count
-
-        How many times the card appears in the provided list.
-
-        :type: int
-
-    .. property:: name
-
-        The name of the card, as it appears in the game.
-
-        :type: str
-
-    .. property:: display_name
-
-        The card as it would show in the deck display. This includes the card's count if it is greater than 1.
-
-        :type: str
