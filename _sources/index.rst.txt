@@ -12,6 +12,7 @@ Welcome to Spireblight's documentation!
 
    fileparser
    utils
+   neow
 
 Indices and tables
 ==================
