@@ -68,7 +68,7 @@
 <dd><p>The parser instance that holds the run data to interpret.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="fileparser.html#gamedata.FileParser" title="gamedata.FileParser">gamedata.FileParser</a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FileParser`</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -113,6 +113,23 @@
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Generator[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.as_str">
+<span class="sig-name descname"><span class="pre">as_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.NeowBonus.as_str" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a full message of the picked and skipped choices.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.has_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_info</span></span><a class="headerlink" href="#gamedata.NeowBonus.has_info" title="Link to this definition">¶</a></dt>
+<dd><p>Whether there is data about the Neow bonus.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -244,6 +261,144 @@
 <dd><p>Calculates the current gold of the character with gold gained or lost, or the Old Coin. If the character does not start with 99 gold, this resuld will be inaccurate. Other code should use the <a class="reference internal" href="#gamedata.NeowBonus.gold" title="gamedata.NeowBonus.gold"><code class="xref py py-attr docutils literal notranslate"><span class="pre">gold</span></code></a> property instead of this.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.get_cards">
+<span class="sig-name descname"><span class="pre">get_cards</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.NeowBonus.get_cards" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the state of the deck entering the first floor. This includes the starter cards and any cards that were obtained, and does not include cards that were removed or transformed away. This does not currently support modded characters. External code should use the <a class="reference internal" href="#gamedata.NeowBonus.cards" title="gamedata.NeowBonus.cards"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cards</span></code></a> property instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of cards, to be passed to <a class="reference internal" href="fileparser.html#gamedata.CardData" title="gamedata.CardData"><code class="xref py py-class docutils literal notranslate"><span class="pre">CardData</span></code></a></p>
+</dd>
+<dt class="field-odd">Raise<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ValueError on unsupported characters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.cards">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cards</span></span><a class="headerlink" href="#gamedata.NeowBonus.cards" title="Link to this definition">¶</a></dt>
+<dd><p>A list of all cards in the deck entering floor 1. This is included to keep track of the deck across floors. Or it will be, once I do it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="fileparser.html#gamedata.CardData" title="gamedata.CardData"><code class="xref py py-class docutils literal notranslate"><span class="pre">CardData</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.card_delta">
+<span class="sig-name descname"><span class="pre">card_delta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.NeowBonus.card_delta" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the difference in card count between entering and exiting the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.relic_delta">
+<span class="sig-name descname"><span class="pre">relic_delta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.NeowBonus.relic_delta" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the difference in relic count between entering and exiting the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.potion_delta">
+<span class="sig-name descname"><span class="pre">potion_delta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.NeowBonus.potion_delta" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the difference in potion count between entering and exiting the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.fights_delta">
+<span class="sig-name descname"><span class="pre">fights_delta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.NeowBonus.fights_delta" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the difference in fight count between entering and exiting the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.turns_delta">
+<span class="sig-name descname"><span class="pre">turns_delta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gamedata.NeowBonus.turns_delta" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the difference in turn count between entering and exiting the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.card_count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">card_count</span></span><a class="headerlink" href="#gamedata.NeowBonus.card_count" title="Link to this definition">¶</a></dt>
+<dd><p>Total card count in the deck at this point in the run, at the end of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.relic_count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">relic_count</span></span><a class="headerlink" href="#gamedata.NeowBonus.relic_count" title="Link to this definition">¶</a></dt>
+<dd><p>Total relic count at this point in the run, at the end of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.potion_count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">potion_count</span></span><a class="headerlink" href="#gamedata.NeowBonus.potion_count" title="Link to this definition">¶</a></dt>
+<dd><p>Total potion count at this point in the run, at the end of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.fights_count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fights_count</span></span><a class="headerlink" href="#gamedata.NeowBonus.fights_count" title="Link to this definition">¶</a></dt>
+<dd><p>Total fight count at this point in the run, at the end of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gamedata.NeowBonus.turns_count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turns_count</span></span><a class="headerlink" href="#gamedata.NeowBonus.turns_count" title="Link to this definition">¶</a></dt>
+<dd><p>Total turn count at this point in the run, at the end of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
